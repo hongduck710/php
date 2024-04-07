@@ -31,9 +31,9 @@ CREATE TABLE IF NOT EXISTS `members` (
   `img_name` varchar(50) DEFAULT NULL,
   `regdate` datetime DEFAULT NULL,
   PRIMARY KEY (`idx`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='회원관리';
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='회원관리';
 
--- 테이블 데이터 php.members:~9 rows (대략적) 내보내기
+-- 테이블 데이터 php.members:~30 rows (대략적) 내보내기
 INSERT INTO `members` (`idx`, `user_id`, `user_pw`, `name`, `age`, `gender`, `img_path`, `img_name`, `regdate`) VALUES
 	(6, '', '', '선우용여', 50, '여', './uploads', 'yongyeo.jpg', '2024-04-06 16:16:19'),
 	(7, 'excuseme', '1c592e3481c4df3b64a4dd38fae38280', '애경언니', 50, '여', './uploads', 'aegyeong.jpg', '2024-04-06 16:16:30'),
@@ -44,7 +44,27 @@ INSERT INTO `members` (`idx`, `user_id`, `user_pw`, `name`, `age`, `gender`, `im
 	(12, 'admin1', '13579', '김강아지', 35, '남', './uploads', 'midal.jpg', '2024-04-06 16:46:37'),
 	(16, 'admin2', 'b6af3f19458ec8e6faff8ee1e0440ecb', '박병아리', 30, '남', '', '', '2024-04-06 19:45:52'),
 	(17, 'missdokgo', '81dc9bdb52d04dc20036dbd8313ed055', '독고분녀', 50, '여', './uploads', 'dokgoboonnyeo.jpg', '2024-04-06 20:07:25'),
-	(18, 'jeongbae', '81dc9bdb52d04dc20036dbd8313ed055', '김정배', 6, '남', './uploads', 'jeongbae.jpg', '2024-04-06 20:10:52');
+	(18, 'jeongbae', '81dc9bdb52d04dc20036dbd8313ed055', '김정배', 6, '남', './uploads', 'jeongbae.jpg', '2024-04-06 20:10:52'),
+	(19, 'hongja', '81dc9bdb52d04dc20036dbd8313ed055', '박홍자', 30, '여', '', '', '2024-04-07 21:04:06'),
+	(20, '', '', '김백조', 40, '남', NULL, NULL, '2024-04-07 21:40:07'),
+	(21, '', '', '김백조', 40, '남', NULL, NULL, '2024-04-07 21:40:07'),
+	(22, '', '', '김백조', 40, '남', NULL, NULL, '2024-04-07 21:40:07'),
+	(24, '', '', '김백조', 40, '남', NULL, NULL, '2024-04-07 21:40:07'),
+	(25, '241', '1ff1de774005f8da13f42943881c655f', '214', 124, '남', '', '', '2024-04-07 21:46:06'),
+	(26, '214', 'ddb30680a691d157187ee1cf9e896d03', '354', 127, '남', '', '', '2024-04-07 21:46:15'),
+	(27, '45', 'd09bf41544a3365a46c9077ebb5e35c3', '457', 56, '여', '', '', '2024-04-07 21:46:26'),
+	(28, '345', '428fca9bc1921c25c5121f9da7815cde', '463', 36, '여', '', '', '2024-04-07 21:53:03'),
+	(29, '346', '02522a2b2726fb0a03bb19f2d8d9524d', '63', 63, '여', '', '', '2024-04-07 21:53:15'),
+	(30, '656', '1728efbda81692282ba642aafd57be3a', '325', 25, '여', '', '', '2024-04-07 21:53:22'),
+	(31, '52', '371bce7dc83817b7893bcdeed13799b5', '235', 127, '여', '', '', '2024-04-07 21:53:39'),
+	(32, '352', '2bb232c0b13c774965ef8558f0fbd615', '235', 67, '남', '', '', '2024-04-07 21:53:46'),
+	(33, 'htds', 'c8ffe9a587b126f152ed3d89a146b445', '김누구', 127, '남', '', '', '2024-04-07 21:54:00'),
+	(34, '43fasdf', 'cb70ab375662576bd1ac5aaf16b3fca4', '박씨', 14, '여', '', '', '2024-04-07 21:54:22'),
+	(35, '3245gfd', 'c8ffe9a587b126f152ed3d89a146b445', '정씨', 21, '남', '', '', '2024-04-07 21:54:51'),
+	(36, 'fgd', '81dc9bdb52d04dc20036dbd8313ed055', 'dsfg', 12, '여', '', '', '2024-04-07 21:55:09'),
+	(37, 'hds', 'c4ca4238a0b923820dcc509a6f75849b', '민소희', 36, '여', '', '', '2024-04-07 21:55:26'),
+	(38, 'missku', '202cb962ac59075b964b07152d234b70', '구은재', 37, '여', '', '', '2024-04-07 21:55:53'),
+	(39, 'mrslee', '81dc9bdb52d04dc20036dbd8313ed055', '이여사', 38, '여', '', '', '2024-04-07 21:56:22');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
