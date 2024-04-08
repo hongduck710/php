@@ -8,10 +8,16 @@
 </head>
 <body>
 <?php
-    session_start();
+
     // ./config/ == config/
-    require_once("./config/db_conn.php");
+    require_once("lib.php");
+
+    require_once("a.php");
+    require_once("b.php");
+    echo b\car\car();
+    //동일한 함수를 이용해야 하는 상황이 있다면 네임스페이스 이용!
     
+    $libs = paging("members", 1); //테이블명이 members 였으므로
 
     /*
     $rand = rand(1, 100); //1에서 100까지 임의의 숫자를 담아줌!!!!
@@ -41,58 +47,7 @@
 
     */
     //print_r($_POST);
-    $cnt= 1; //각 페이지의 게시물 번호
-    
-    //전체 게시물 갯수
-    $sql_query = "select * from members order by idx desc";
-    $result = mysqli_query($connect, $sql_query);
-    $num = mysqli_num_rows($result); // 총row의 갯수를 파악
 
-    //한 페이지 당 데이터 갯수
-    $list_num = 5;
-
-    //한 블럭 당 페이지 갯수
-    $page_num = 3;
-
-    //현재 페이지 
-    $page = isset($_GET['page'])? $_GET['page'] : 1; //페이지가 없으면 첫번째 페이지가 나옴. 페이지를 눌렀다면 $_GET에 있는 페이지가 $page에 담겨라. 삼항식
-
-    //전체 페이지 수 = 전체 데이터 / 페이지 당 데이터 갯수, ceil(올림), floor(내림), round(반올림)
-    $total_page = ceil($num / $list_num);
-
-    //전체 블럭 수 = 전체 페이지 수 / 블럭 당 페이지 수
-    $total_block = ceil($total_page / $page_num);
-
-    //현재 블럭 번호 = 현재 페이지 번호 / 블럭 당 페이지 수
-    $now_block = ceil($page / $page_num);
-
-    //블럭 당 시작 페이지 번호 = (해당 글의 블럭 번호 - 1) * 블럭 당 페이지 수 + 1
-    $s_pageNum = ($now_block - 1) * $page_num + 1;
-
-    //데이터가 0개인 경우
-    if($s_pageNum == 0)
-    {
-        $s_pageNum = 1;
-    }
-
-    //블럭 당 마지막 페이지 번호 = 현재 블럭 번호 * 블럭 당 페이지 수
-    $e_pageNum = $now_block * $page_num;
-
-    // 마지막 번호가 전체 페이지를 넘지 않도록
-    if($e_pageNum > $total_page)
-    {
-        $e_pageNum = $total_page;
-    }
-
-    // 시작 번호 = (현재 페이지 번호 - 1) * 페이지당 보여질 데이터 수
-    $start = ($page - 1) * $list_num;
-
-    //글번호
-    $cnt = $start + 1;
-
-    //기존 쿼리에 페이지 개념을 도입 limit
-    $sql_query = "select * from members order by idx desc limit ".$start.", ".$list_num." ";
-    $result = mysqli_query($connect, $sql_query);
 
     echo "<a href='write.php'>등록</a>";
     
@@ -115,10 +70,10 @@
     echo "<th>삭제</th>";
     echo "</tr>";
 
-    while($row=mysqli_fetch_array($result))
+    while($row=mysqli_fetch_array($libs['result']))
     {
         echo "<tr>";
-        echo "<td>".$cnt."</td>";
+        echo "<td>".$libs['cnt']."</td>";
         echo "<td>";
         echo "<a href='./view.php?view_no=".$row['idx']."'>";
         echo $row['name'];
@@ -138,36 +93,12 @@
 
         echo "</tr>";
 
-        $cnt++; // $cnt = $cnt + 1;
+        $libs['cnt']++; // $cnt = $cnt + 1;
     }
 
     echo "</table>";
 
-    //페이징 프론트 작업
-    echo "<p>";
-    //이전 페이지
-    if($page <= 1) 
-    {
-        echo "<a href='index.php?page=1'>이전</a>";
-    } else {
-        echo "<a href='index.php?page=".($page - 1)."'>이전</a>";
-    }
-
-    //페이지 번호 출력
-    for($p = $s_pageNum; $p <= $e_pageNum; $p++)
-    {
-        echo "<a href='index.php?page=".$p."'>".$p."</a>";
-    }
-
-    //다음 페이지
-    if($page >= $total_page) 
-    {
-        echo "<a href='index.php?page=".$total_page."'>다음</a>";
-    } else {
-        echo "<a href='index.php?page=".($page + 1)."'>다음</a>";
-    }
-
-    echo "</p>";
+    pagination($libs);
 
 
     mysqli_close($connect);
